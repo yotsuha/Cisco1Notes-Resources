@@ -1,0 +1,177 @@
+enable
+config t
+enable secret C1sc0R0cks
+#
+#DNS Addressing
+#
+#CORE01 SETUP
+#
+enable
+config t
+hostname Core01
+#
+ip routing
+#
+int gig 1/0/2
+no switchport
+ip address 192.168.10.1 255.255.255.252
+no shut
+#
+int gig 1/0/3
+no switchport
+ip address 192.168.10.5 255.255.255.252
+no shut
+#
+int gig 1/0/4
+no switchport
+ip address 192.168.10.9 255.255.255.252
+no shut
+#
+int gig 1/0/6
+no switchport
+ip address 192.168.10.13 255.255.255.252
+no shut
+#
+int gig 1/0/7
+no switchport
+ip address 192.168.10.17 255.255.255.252
+no shut
+#
+int gig 1/0/1
+no switchport
+ip address 100.100.90.2 255.255.255.0
+no shut
+#
+router ospf 1
+#creates ospf for process ID 1
+default-information originate
+#Creates a defualt static OSPF route
+network 192.168.10.1 0.0.0.0 area 0
+network 192.168.10.5 0.0.0.0 area 0
+network 192.168.10.9 0.0.0.0 area 0
+network 192.168.10.13 0.0.0.0 area 0
+network 192.168.10.17 0.0.0.0 area 0
+network 100.100.90.2 0.0.0.0 area 0
+#Creates an OSPF configuration for the address
+router-id 1.1.1.1
+#Sets the router's ospf id to 1.1.1.1
+show cdp neighbor detail
+#Press space a few times and find isp
+ip route 0.0.0.0 0.0.0.0 100.100.90.1
+#Sets the default internet connection to the ISP
+ip route 0.0.0.0 0.0.0.0 192.168.10.2 10
+#Sets the backup path to a different router with the back route 10
+#
+#CORE02 SETUP
+#
+hostname Core02
+#
+ip routing
+#
+int gig 1/0/2
+no switchport
+ip address 192.168.10.2 255.255.255.252
+no shut
+int gig 1/0/3
+no switchport
+ip address 192.168.10.21 255.255.255.252
+no shut
+int gig 1/0/4
+no switchport
+ip address 192.168.10.25 255.255.255.252
+no shut
+int gig 1/0/6
+no switchport
+ip address 192.168.10.29 255.255.255.252
+no shut
+int gig 1/0/7
+no switchport
+ip address 192.168.10.33 255.255.255.252
+no shut
+#
+#show ip interface brief
+router ospf 1
+default-information originate
+#
+network 192.168.10.2 0.0.0.0 area 0
+network 192.168.10.21 0.0.0.0 area 0
+network 192.168.10.25 0.0.0.0 area 0
+network 192.168.10.29 0.0.0.0 area 0
+network 192.168.10.33 0.0.0.0 area 0
+#
+router-id 2.2.2.2
+#
+show cdp neighbor detail
+#
+ip route 0.0.0.0 0.0.0.0 192.168.10.1
+ip route 0.0.0.0 0.0.0.0 10.100.80.1 10
+#
+#DMZ01 SETUP
+#
+enable
+config t
+hostname DMZ01
+#
+ip routing
+#
+int gig 1/0/1
+no switchport
+ip address 192.168.10.6 255.255.255.252
+no shut
+int gig 1/0/2
+no switchport
+ip address 192.168.10.22 255.255.255.252
+no shut
+int gig 1/0/3
+no switchport
+ip address 199.100.100.1 255.255.255.0
+no shut
+#
+router ospf 1
+default-information originate
+network 192.168.10.6 0.0.0.0 area 0
+network 192.168.10.22 0.0.0.0 area 0
+network 199.100.100.1 0.0.0.0 area 0
+network 199.100.101.1 0.0.0.0 area 0
+router-id 3.3.3.3
+#show ip route (to see the routing table)
+#
+#https://packetlife.net/media/library/23/common_ports.pdf
+#
+#Command below is creating an access list with number 100 (extended acl), permiting (allowing) connections, ip (any internet protocol), from 200.200.200.0 0.0.0.255 (source address <ip address> <wildcard mask>), to 192.168.30.0 0.0.0.255 (destination address <ip address> <wildcard mask>)
+access-list 100 permit ip 200.200.200.0 0.0.0.255 192.168.30.0 0.0.0.255
+access-list 100 permit ip 200.200.200.0 0.0.0.255 192.168.20.0 0.0.0.255
+access-list 100 deny ip 200.200.200.0 0.0.0.255 172.16.3.0 0.0.0.255
+access-list 100 deny ip 200.200.200.0 0.0.0.255 192.168.40.0 0.0.0.255
+access-list 100 permit ip 200.200.200.0 0.0.0.255 any
+#
+#DMZ02 SETUP
+#
+enable
+config t
+hostname DMZ02
+ip routing
+int gig 1/0/1
+no switchport
+ip address 192.168.10.10 255.255.255.252
+no shut
+int gig 1/0/2
+no switchport
+ip address 192.168.10.26 255.255.255.252
+no shut
+int gig 1/0/3
+no switchport
+ip address 199.100.101.1 255.255.255.0
+no shut
+router ospf 1
+default-information originate
+network 192.168.10.10 0.0.0.0 area 0
+network 192.168.10.26 0.0.0.0 area 0
+network 199.100.101.1 0.0.0.0 area 0
+router-id 4.4.4.4
+#
+access-list 101 permit ip 200.200.201.0 0.0.0.255 192.168.40.0 0.0.0.255
+access-list 101 permit ip 200.200.201.0 0.0.0.255 192.168.20.0 0.0.0.255
+access-list 101 deny ip 200.200.201.0 0.0.0.255 192.168.30.0 0.0.0.255
+access-list 101 deny ip 200.200.201.0 0.0.0.255 200.200.200.0 0.0.0.255
+access-list 101 permit ip 200.200.201.0 0.0.0.255 any
