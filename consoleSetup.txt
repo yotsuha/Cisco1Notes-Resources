@@ -1,0 +1,12 @@
+#configure privileged password
+enable
+config t
+enable secret [password]
+#configure console password
+line con 0
+password [password]
+login
+#Configure Vlan IP
+int vlan 1
+ip addr 10.10.10.2 255.255.255.0
+no shut
