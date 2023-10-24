@@ -10,3 +10,15 @@ login
 int vlan 1
 ip addr 10.10.10.2 255.255.255.0
 no shut
+#Configure telnet on vty 0 4
+line vty 0 4
+password NCSA63
+login
+#Adding a router and Wiring the router (The data cable is left in the switch and the console cable goes into the router)
+ip routing
+int gig 0/0
+ip addr 8.8.8.2 255.255.0.0
+no shut
+int gig 0/1
+ip addr 10.10.10.1 255.255.255.0
+no shut
