@@ -6,7 +6,7 @@ enable secret [password]
 line con 0
 password [password]
 login
-#Configure Vlan IP
+#Configure Vlan IP, SVI (Switch Virtual Interface)
 int vlan 1
 ip addr 10.10.10.2 255.255.255.0
 no shut
