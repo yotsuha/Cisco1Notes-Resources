@@ -1,4 +1,4 @@
-# RDP and ISS Lab - Intro to Networking
+# RDP and IIS Lab - Intro to Networking
 
 ## Configure Vlan 1 for Switch 1
 ```
