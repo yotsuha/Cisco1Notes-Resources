@@ -33,6 +33,8 @@ ip addr 10.10.10.1 255.0.0.0
 no shut
 exit
 
+ip route 0.0.0.0 0.0.0.0 10.10.10.2
+
 ip domain name AJyuvrajR1SSH
 crypto key generate rsa
 enable password ajyuvraj1
@@ -61,7 +63,7 @@ line vty 0 4
 password ajyuvraj
 login
 ```
-## Configure Router 1 interfaces & SSH
+## Configure Router 2 interfaces & SSH
 ```
 enable
 config t
@@ -76,6 +78,8 @@ int fa 0/1
 ip addr 10.10.10.2 255.0.0.0
 no shut
 exit
+
+ip route 0.0.0.0 0.0.0.0 10.10.10.1
 
 ip domain name AJyuvrajR2SSH
 crypto key generate rsa
