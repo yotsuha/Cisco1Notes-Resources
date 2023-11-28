@@ -1,4 +1,4 @@
-# RDP and IIS Lab - Intro to Networking
+# RDP (Remote Desktop Protocol) and IIS (Web Server) Lab - Intro to Networking
 
 ## Configure Vlan 1 for Switch 1
 ```
@@ -45,6 +45,11 @@ transport input ssh
 login local
 ```
 
+## Disable Firewall RDP PC
+```
+Control Panel > System and Security > Windows Defender Firewall > On the left, click 'Turn Windows Defender Firewall on or off' > Turn on 'Turn off Windows Defender Firewall (not recommended)' under both Public and Private Network Settings.
+```
+
 
 ## Configure Vlan 1 for Switch 2
 ```
@@ -89,4 +94,9 @@ ip ssh version 2
 line vty 0 5
 transport input ssh
 login local
+```
+
+## Disable Firewall IIS PC
+```
+Control Panel > System and Security > Windows Defender Firewall > On the left, click 'Turn Windows Defender Firewall on or off' > Turn on 'Turn off Windows Defender Firewall (not recommended)' under both Public and Private Network Settings.
 ```
