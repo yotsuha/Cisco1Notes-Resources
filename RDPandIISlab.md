@@ -47,7 +47,7 @@ login local
 
 ## Disable Firewall RDP PC
 ```
-Control Panel > System and Security > Windows Defender Firewall > On the left, click 'Turn Windows Defender Firewall on or off' > Turn on 'Turn off Windows Defender Firewall (not recommended)' under both Public and Private Network Settings.
+Control Panel > System and Security > Windows Defender Firewall > On the left, click 'Turn Windows Defender Firewall on or off' > Turn on 'Turn off Windows Defender Firewall (not recommended)' under both Public and Private Network Settings > Press 'OK'
 ```
 
 
@@ -98,5 +98,5 @@ login local
 
 ## Disable Firewall IIS PC
 ```
-Control Panel > System and Security > Windows Defender Firewall > On the left, click 'Turn Windows Defender Firewall on or off' > Turn on 'Turn off Windows Defender Firewall (not recommended)' under both Public and Private Network Settings.
+Control Panel > System and Security > Windows Defender Firewall > On the left, click 'Turn Windows Defender Firewall on or off' > Turn on 'Turn off Windows Defender Firewall (not recommended)' under both Public and Private Network Settings > Press 'OK'
 ```
