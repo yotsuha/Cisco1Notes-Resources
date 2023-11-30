@@ -76,7 +76,7 @@ config t
 enable secret ajyuvraj
 
 int fa 0/0
-ip addr 127.16.10.1 255.255.255.0
+ip addr 172.16.10.1 255.255.255.0
 no shut
 
 int fa 0/1
